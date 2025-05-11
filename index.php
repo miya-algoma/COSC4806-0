@@ -7,10 +7,14 @@ if (!isset($_SESSION['authenticated'])) {
 ?>
 <!DOCTYPE html>
 <html>
-<head><title>Home</title></head>
+<head>
+    <title>Assignment 1 - Mark Iya</title>
+</head>
 <body>
-  <h1>Welcome, <?php echo $_SESSION['username']; ?>!</h1>
-  <p>Today is <?php echo date("F j, Y, g:i a"); ?></p>
-  <a href="logout.php">Logout</a>
+    <h1>Assignment 1</h1>
+    <p>Student: Mark Iya</p>
+    <p>Student Number: 219600000</p>
+    <p>Welcome, <?= $_SESSION['username'] ?>!</p>
+    <a href="logout.php">Logout</a>
 </body>
 </html>

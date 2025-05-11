@@ -7,37 +7,27 @@ if (isset($_SESSION['authenticated'])) {
 ?>
 <!DOCTYPE html>
 <html>
-<head><title>Login</title></head>
+<head>
+    <title>Login</title>
+</head>
 <body>
-  <form method="POST" action="login.php">
-    Username: <input type="text" name="username" required><br>
-    Password: <input type="password" name="password" required><br>
-    <button type="submit">Login</button>
-  </form>
+    <h1>Login Form</h1>
 
-  <?php
-    $correctUsername = "user123";
-    $correctPassword = "pass123";
-
-    if (!isset($_SESSION['failCount'])) {
-        $_SESSION['failCount'] = 0;
+    <?php
+    if (isset($_SESSION['error'])) {
+        echo "<p style='color:red'>" . $_SESSION['error'] . "</p>";
+        unset($_SESSION['error']);
     }
+    ?>
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+    <form action="validate.php" method="post">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
 
-        if ($username === $correctUsername && $password === $correctPassword) {
-            $_SESSION['authenticated'] = 1;
-            $_SESSION['username'] = $username;
-            $_SESSION['failCount'] = 0;
-            header("Location: index.php");
-            exit();
-        } else {
-            $_SESSION['failCount'] += 1;
-            echo "<p style='color:red;'>Login failed. Attempt #" . $_SESSION['failCount'] . "</p>";
-        }
-    }
-  ?>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>
