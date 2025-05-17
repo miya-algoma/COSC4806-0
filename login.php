@@ -1,5 +1,6 @@
 <?php
 //Mark Iya- 219600000
+// //COSC4806 Assignment 1
 session_start();
 if (isset($_SESSION['authenticated'])) {
     header("Location: index.php");
